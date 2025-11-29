@@ -259,9 +259,10 @@ export function RegisterForm({
                             type="text"
                             placeholder="APEX_WARRIOR"
                             className={cn(
-                              "bg-black dark:bg-slate-950/50 border-2 border-slate-300 dark:border-slate-700 text-white placeholder:text-slate-700 dark:placeholder:text-white/60 focus:border-orange-500 focus:shadow-lg focus:shadow-orange-500/20 transition-all h-12 uppercase tracking-wider",
-                              usernameHasError &&
-                                "!border-[var(--color-error)] focus:!border-[var(--color-error)] focus:!shadow-[0_0_0_3px_rgba(247,40,40,0.25)] dark:!border-[var(--color-error)]"
+                              "bg-black dark:bg-slate-950/50 border-2 text-white placeholder:text-slate-700 dark:placeholder:text-white/60 transition-all h-12 uppercase tracking-wider",
+                              usernameHasError
+                                ? "!border-[var(--color-error)] focus:!border-[var(--color-error)] focus:!shadow-[0_0_0_3px_rgba(247,40,40,0.25)]"
+                                : "border-slate-300 dark:border-slate-700 focus:border-orange-500 focus:shadow-lg focus:shadow-orange-500/20"
                             )}
                             {...field}
                           />
@@ -310,16 +311,17 @@ export function RegisterForm({
                             type="email"
                             placeholder="champion@kiibord.gg"
                             className={cn(
-                              "bg-black dark:bg-slate-950/50 border-2 border-slate-300 dark:border-slate-700 text-white placeholder:text-slate-700 dark:placeholder:text-white/60 focus:border-orange-500 focus:shadow-lg focus:shadow-orange-500/20 transition-all h-12",
-                              emailHasError &&
-                                "!border-[var(--color-error)] focus:!border-[var(--color-error)] focus:!shadow-[0_0_0_3px_rgba(247,40,40,0.25)] dark:!border-[var(--color-error)]"
+                              "bg-black dark:bg-slate-950/50 border-2 text-white placeholder:text-slate-700 dark:placeholder:text-white/60 transition-all h-12",
+                              emailHasError
+                                ? "!border-[var(--color-error)] focus:!border-[var(--color-error)] focus:!shadow-[0_0_0_3px_rgba(247,40,40,0.25)]"
+                                : "border-slate-300 dark:border-slate-700 focus:border-orange-500 focus:shadow-lg focus:shadow-orange-500/20"
                             )}
                             {...field}
                           />
                         </FormControl>
                         <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-orange-500 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
                       </div>
-                      <FormMessage className="text-red-400 text-xs" />
+                      <FormMessage className="text-[var(--color-error)] text-xs" />
                       {/* Info text */}
                       <motion.p
                         className="text-xs text-white flex items-center gap-2"

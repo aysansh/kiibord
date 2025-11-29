@@ -180,9 +180,9 @@ export function LoginForm({
             </motion.div>
 
             <CardTitle className="text-xl text-white flex items-center justify-center gap-3 pt-2">
-              <Swords className="w-5 h-5 text-blue-400" />
+              <Swords className="w-5 h-5 text-cyan-400" />
               <span className="tracking-wide">ENTER THE ARENA</span>
-              <Swords className="w-5 h-5 text-blue-400" />
+              <Swords className="w-5 h-5 text-cyan-400" />
             </CardTitle>
             <CardDescription className="text-white">
               Ready for battle?
@@ -215,16 +215,17 @@ export function LoginForm({
                             type="email"
                             placeholder="warrior@kiibord.gg"
                             className={cn(
-                              "bg-black dark:bg-slate-950/50 border-2 border-slate-300 dark:border-slate-700 text-white placeholder:text-black dark:placeholder:text-white/60 focus:border-cyan-500 focus:shadow-lg focus:shadow-cyan-500/20 transition-all duration-300 h-12 text-base",
-                              emailHasError &&
-                                "!border-[var(--color-error)] focus:!border-[var(--color-error)] focus:!shadow-[0_0_0_3px_rgba(247,40,40,0.25)] dark:!border-[var(--color-error)]"
+                              "bg-black dark:bg-slate-950/50 border-2 text-white placeholder:text-black dark:placeholder:text-white/60 transition-all duration-300 h-12 text-base",
+                              emailHasError
+                                ? "!border-[var(--color-error)] focus:!border-[var(--color-error)] focus:!shadow-[0_0_0_3px_rgba(247,40,40,0.25)]"
+                                : "border-slate-300 dark:border-slate-700 focus:border-cyan-500 focus:shadow-lg focus:shadow-cyan-500/20"
                             )}
                             {...field}
                           />
                         </FormControl>
                         <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-cyan-500 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
                       </div>
-                      <FormMessage className="text-red-400 text-xs" />
+                      <FormMessage className="text-[var(--color-error)] text-xs" />
                       {/* Info text */}
                       <motion.p
                         className="text-xs text-white flex items-center gap-2"

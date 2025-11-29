@@ -151,8 +151,9 @@ function FormMessage({
           key={formMessageId}
           data-slot="form-message"
           id={formMessageId}
+          style={{ color: "#e44242" }}
           className={cn(
-            "!text-error text-sm font-semibold tracking-wide drop-shadow-sm",
+            "text-sm font-semibold tracking-wide drop-shadow-sm",
             className
           )}
           initial={{ opacity: 0, y: -6 }}

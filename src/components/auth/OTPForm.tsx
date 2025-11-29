@@ -1,6 +1,6 @@
 import { useState, useRef, KeyboardEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { useForm, Resolver } from "react-hook-form";
+import { useForm, Resolver, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Shield, ArrowLeft, Zap, Target, Crosshair, Radar } from "lucide-react";
@@ -94,8 +94,8 @@ export function OTPForm({ email, context, onBack }: OTPFormProps) {
     }, OTP_CONFIG.resendDelay);
   };
 
-  const otpValues = form.watch("otp");
-  const isComplete = otpValues.every((digit) => digit !== "");
+  const otpValues = useWatch({ control: form.control, name: "otp" });
+  const isComplete = otpValues?.every((digit) => digit !== "") ?? false;
 
   return (
     <motion.div
@@ -227,7 +227,6 @@ export function OTPForm({ email, context, onBack }: OTPFormProps) {
                 className="flex items-center justify-center text-5xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-green-600"
                 style={{ fontWeight: 900, letterSpacing: "0.05em" }}
               >
-                {/* {APP_CONFIG.name} */}
                 <Image
                   src="/assets/images/logo.png"
                   className="object-contain"
@@ -294,9 +293,10 @@ export function OTPForm({ email, context, onBack }: OTPFormProps) {
                               onKeyDown={(e) => handleKeyDown(index, e)}
                               onBlur={formField.onBlur}
                               className={cn(
-                                "w-12 h-16 text-center bg-black dark:bg-slate-950/60 border-2 border-slate-300 dark:border-slate-700 rounded-lg text-white text-2xl placeholder:text-slate-700 dark:placeholder:text-white/60 focus:border-green-500 focus:shadow-lg focus:shadow-green-500/30 focus:outline-none transition-all duration-300",
-                                form.formState.errors.otp?.[index] &&
-                                  "!border-[var(--color-error)] focus:!border-[var(--color-error)] focus:!shadow-[0_0_0_3px_rgba(247,40,40,0.25)] dark:!border-[var(--color-error)]"
+                                "w-12 h-16 text-center bg-black dark:bg-slate-950/60 border-2 rounded-lg text-white text-2xl placeholder:text-slate-700 dark:placeholder:text-white/60 focus:outline-none transition-all duration-300",
+                                form.formState.errors.otp?.[index]
+                                  ? "!border-[var(--color-error)] focus:!border-[var(--color-error)] focus:!shadow-[0_0_0_3px_rgba(247,40,40,0.25)]"
+                                  : "border-slate-300 dark:border-slate-700 focus:border-green-500 focus:shadow-lg focus:shadow-green-500/30"
                               )}
                               style={{ fontWeight: 700 }}
                             />
@@ -327,7 +327,7 @@ export function OTPForm({ email, context, onBack }: OTPFormProps) {
 
               {/* Progress dots */}
               <div className="flex justify-center gap-2">
-                {otpValues.map((digit, index) => (
+                {(otpValues ?? []).map((digit, index) => (
                   <motion.div
                     key={index}
                     className="relative"
