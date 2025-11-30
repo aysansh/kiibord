@@ -32,7 +32,14 @@ export function ThemeToggle() {
           disabled
         >
           <div className="relative flex items-center justify-center">
-            <Sun className="h-6 w-6 opacity-100 scale-100 rotate-0" />
+            <Sun
+              className="h-6 w-6 transition-all duration-500 absolute opacity-100 scale-100 rotate-0"
+              style={{ filter: "drop-shadow(0 0 6px rgba(251,191,36,0.6))" }}
+            />
+            <Moon
+              className="h-6 w-6 transition-all duration-500 absolute opacity-0 scale-0 rotate-180"
+              style={{ filter: "none" }}
+            />
           </div>
         </Button>
       </div>
